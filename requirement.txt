@@ -1,0 +1,5 @@
+gunicorn
+line-bot-sdk==2.4.2
+flask
+flask_sqlalchemy
+psycopg2
