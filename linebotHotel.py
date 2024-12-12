@@ -8,14 +8,14 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, PostbackEvent, ImageSendMessage, LocationSendMessage, TemplateSendMessage, ButtonsTemplate, URITemplateAction, ConfirmTemplate, PostbackTemplateAction
 from urllib.parse import parse_qsl
 from sqlalchemy import text
+import os
 
 # 定義 LINE Bot Channel Secret 及 Access Token
-# line_bot_api = LineBotApi('你的 CHANNEL_ACCESS_TOKEN')
-# handler = WebhookHandler('你的 CHANNEL_SECRET')
-line_bot_api = LineBotApi('7V86n54cwp9R2wJHEev47KE3vt/1ec5vayw9YN4S8Mt0IYP9qbEwaCpPpBSorkVU8+dQIgPG2YbCFyX5Xmet4JCW1FybIwFwXGMBeQYmC1VOOnJ5MZ7zA/J5+ejieyLa7RJ3yifQKAmzYribLxRJ8gdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('d063ca9c6af57939c72d0a4f0b378173')
+line_bot_api = LineBotApi(os.environ.get('Channel_Access_Token'))
+handler = WebhookHandler(os.environ.get('Channel_Secret'))
+
 # 定義 PostgreSQL 連線字串
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://admin:123456@127.0.0.1:5432/hotel'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('db_url')
 db = SQLAlchemy(app)
 # 定義 LIFF ID
 liffid = '2006619471-0Ob2nb99'
